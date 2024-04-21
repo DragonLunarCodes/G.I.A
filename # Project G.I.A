@@ -1,4 +1,4 @@
-#Project Ice Dragon
+#Project G.I.A
 import random
 import time
 
@@ -263,7 +263,7 @@ def main():
             give_compliment(user_name)
         elif choice == "about" or choice == "6":
             display_about()
-        elif choice == "exit" or choice == "8":
+        elif choice == "exit" or choice == "7":
             print("Exiting. Goodbye!")
             break
         else:
