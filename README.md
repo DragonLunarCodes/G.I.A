@@ -55,12 +55,8 @@ Selecting this option will exit the program.
 
 Installation
 Clone the repository:
-bash
 Copy code
-git clone 
-Navigate to the project directory:
-bash
-Copy code
+git clone https://github.com/DragonLunarCodes/G.I.A.git
 
 Run the program:
 bash
