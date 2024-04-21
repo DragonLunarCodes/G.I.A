@@ -1,6 +1,7 @@
 # G.I.A Gender Identity Assistant
 
 Introduction
+
 G.I.A is a Gender Identity Assistant designed to provide support and information related to gender identity. The assistant offers various features such as practicing preferred name and pronouns, validating gender identity, changing gender for fun, giving compliments, and more.
 
 Features
