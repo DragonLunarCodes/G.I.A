@@ -1,0 +1,273 @@
+#Project Ice Dragon
+import random
+import time
+
+# Function to get a random greeting
+def get_random_greeting():
+    greetings = ["Hello", "Hi", "Hey", "Greetings", "Howdy"]
+    return random.choice(greetings)
+
+# Function to get the user's name
+def get_user_name():
+    while True:
+        name = input("May I Have Your Preferred Name? ").strip().capitalize()
+        # Filter out inappropriate names
+        inappropriate_names = ["Admin", "Moderator", "Bot"]
+        if name in inappropriate_names:
+            print("Sorry, that name is not allowed. Please try again.")
+        else:
+            # Ask if the provided name is correct
+            name_confirmation = input("Is '{}' correct? (yes/no): ".format(name)).strip().lower()
+
+            if name_confirmation in ["yes", "y"]:
+                print("Thank you!")
+                return name
+            elif name_confirmation in ["no", "n"]:
+                continue
+            else:
+                print("Invalid response. Please answer with 'yes' or 'no'.")
+
+# Function to get a random pleasure message
+def get_pleasure_message():
+    pleasure_messages = [
+        "It's a pleasure to meet you",
+        "Nice to meet you",
+        "Great to meet you",
+        "Lovely to meet you"
+    ]
+    return random.choice(pleasure_messages)
+
+# Function to display options
+def display_options(user_name):
+    print("How Can I Help You Today, {}?".format(user_name))
+    print("1. My Profile")
+    print("2. Preferred Name and Pronoun Practice")
+    print("3. Validation")
+    print("4. Turn me into..")
+    print("5. Give Me a Compliment")
+    print("6. About")
+    print("7. Resources")
+    print("8. Exit\n")  # Add an empty line after "Exit" add a new option for a profile as number 1 and then move all the numbers down by one
+
+# Function for creating profile and changing name
+# Function for creating profile and changing name
+def create_profile(user_name, current_pronouns=None):
+    print("Current Name: {}".format(user_name))
+    if current_pronouns is not None:
+        print("Current Pronouns: {}".format(current_pronouns))
+    else:
+        print("Current Pronouns: Not set")
+
+    change_name = input("Would you like to change your name? (yes/no): ").strip().lower()
+    if change_name in ["yes", "y"]:
+        while True:
+            new_name = input("Enter your new preferred name: ").strip().capitalize()
+            confirm_name = input("Is '{}' correct? (yes/no): ".format(new_name)).strip().lower()
+            if confirm_name in ["yes", "y"]:
+                user_name = new_name
+                break
+            elif confirm_name in ["no", "n"]:
+                continue
+            else:
+                print("Invalid response. Please answer with 'yes' or 'no'.")
+
+    while True:
+        pronouns = input("Enter your pronouns (e.g., he/him, she/her, they/them, any): ").strip().lower()
+        if pronouns not in ["he/him", "she/her", "they/them", "any"]:
+            print("Sorry, '{}' is not a supported pronoun set. Please try again.".format(pronouns))
+            continue
+        confirm_pronouns = input("Are '{}' your pronouns? (yes/no): ".format(pronouns)).strip().lower()
+        if confirm_pronouns in ["yes", "y"]:
+            return user_name, pronouns
+        elif confirm_pronouns in ["no", "n"]:
+            continue
+        else:
+            print("Invalid response. Please answer with 'yes' or 'no'.")
+
+
+# Function for validating gender identity
+def validate_gender_identity():
+    excluded_identities = ["attack helicopter", "Attack Helicopter"]
+
+    while True:
+        gender_identity = input("Please enter your gender identity: ").strip().lower()
+
+        if gender_identity in excluded_identities:
+            print("Error: 'Attack helicopter' is not a valid gender identity. "
+                  "I understand you may be joking, but comparing gender identity to objects can be hurtful and "
+                  "disrespectful to others. Let's try to be more considerate.")
+        elif gender_identity in ["male", "female", "non-binary", "transgender", "genderqueer", "trans", "agender",
+                                 "genderfluid", "gender non-conforming"]:
+            print("Your gender identity is valid.")
+            return
+        else:
+            print("Your gender identity is not currently in my data set. Please try again.")
+
+# Function for validating as a valid person
+def validate_as_valid_person():
+    while True:
+        valid_response = input("Are you valid? (yes/no): ").strip().lower()
+
+        if valid_response in ["yes", "y"]:
+            print("Thank you. You are valid!")
+            return
+        elif valid_response in ["no", "n"]:
+            print("Let's validate your gender identity further.")
+            validate_gender_identity()
+        else:
+            print("Invalid response. Please answer with 'yes' or 'no'.")
+
+# Function for changing gender
+def change_gender():
+    print("Let's have some fun and change your gender!")
+
+    while True:
+        gender_choice = input("Do you want to be turned into a Guy, a Girl, or a Non-Binary Pal? ").strip().lower()
+
+        if gender_choice in ["guy", "girl", "non-binary pal"]:
+            print("Turning you into a {}..".format(gender_choice))
+            print("Give me a moment as I work my magic...")
+            for i in range(5, 0, -1):
+                print(i)
+                time.sleep(1)
+            print("Congratulations! You are now a {}!".format(gender_choice))
+            print("\nDisclaimer: This is just for fun. However you feel is valid.")
+            return
+        else:
+            print("Sorry at this time we only have the three options listed above. "
+                  "Please choose 'Guy', 'Girl', or 'Non-Binary Pal'.")
+
+# Function for giving compliments
+def give_compliment(user_name):
+    # Define the compliments list
+    compliments = [
+        "You have a wonderful smile, {}!",
+        "Your positivity is infectious, {}!",
+        "You're a great listener, {}!",
+        "Your creativity inspires me, {}!"
+    ]
+
+    while True:
+        # Choose a random compliment from the list
+        compliment = random.choice(compliments)
+        print(compliment.format(user_name))
+        response = input("Would you like another compliment? (yes/no): ").strip().lower()
+        if response == 'yes' or response == 'y':
+            continue
+        elif response == 'no' or response == 'n':
+            break
+        else:
+            print("Invalid response. Please enter 'yes' or 'no'.")
+
+# Function for displaying about information
+def display_about():
+    print("About this program:")
+    print("This is a friendly Gender Identity Assistant designed to provide support and information "
+          "related to gender identity.")
+    print("It offers various features such as practicing preferred name and pronouns, validating gender identity, "
+          "changing gender for fun, giving compliments, and more.")
+
+# Function for preferred name and pronoun practice
+def preferred_name_and_pronoun_practice(user_name, pronouns):
+    if pronouns is None:
+        print("Please fill out your pronouns in the profile section before proceeding.")
+        return
+
+    print("Welcome to the Preferred Name and Pronoun Practice section, {}!".format(user_name))
+    print("Let's practice using your preferred name and pronouns.")
+
+    # Randomize pronouns if "any" is chosen
+    if pronouns == "any":
+        pronoun_options = ["he/him", "she/her", "they/them"]
+        pronouns = random.choice(pronoun_options)
+
+  # Prompt user for activity, color, animal, and music
+    activity = input("Enter your favorite activity: ").strip()
+    color = input("Enter your favorite color: ").strip()
+    animal = input("Enter your favorite animal: ").strip()
+    music = input("Enter your favorite music: ").strip()
+
+#fix these sentances and add a space
+    # Use user-input in sentences with appropriate pronouns
+    if pronouns == "he/him":
+        print("When {}, he enjoyed {}.".format(user_name, activity))
+        print("His favorite color is {}.".format(color))
+        print("His favorite animal is {}.".format(animal))
+        print("His favorite music is {}.".format(music))
+    elif pronouns == "she/her":
+        print("When {}, she enjoyed {}.".format(user_name, activity))
+        print("Her favorite color is {}.".format(color))
+        print("Her favorite animal is {}.".format(animal))
+        print("Her favorite music is {}.".format(music))
+    elif pronouns == "they/them":
+        print("When {}, they enjoyed {}.".format(user_name, activity))
+        print("Their favorite color is {}.".format(color))
+        print("Their favorite animal is {}.".format(animal))
+        print("Their favorite music is {}.".format(music))
+    elif pronouns == "any":
+        pronoun_options = ["he/him", "she/her", "they/them"]
+        random_pronouns = random.choice(pronoun_options)
+        if random_pronouns == "he/him":
+            print("When {}, he enjoyed {}.".format(user_name, activity))
+            print("His favorite color is {}.".format(color))
+            print("His favorite animal is {}.".format(animal))
+            print("His favorite music is {}.".format(music))
+        elif random_pronouns == "she/her":
+            print("When {}, she enjoyed {}.".format(user_name, activity))
+            print("Her favorite color is {}.".format(color))
+            print("Her favorite animal is {}.".format(animal))
+            print("Her favorite music is {}.".format(music))
+        elif random_pronouns == "they/them":
+            print("When {}, they enjoyed {}.".format(user_name, activity))
+            print("Their favorite color is {}.".format(color))
+            print("Their favorite animal is {}.".format(animal))
+            print("Their favorite music is {}.".format(music))
+
+# Sentences using only the user's name
+    print("{} is a wonderful person.".format(user_name))
+    print("{} enjoys spending time outdoors.".format(user_name))
+    print("{} loves trying new foods.".format(user_name))
+    print("People always admire {}'s creativity.".format(user_name))
+    print("When {} laughs, everyone around them smiles.".format(user_name))
+    print("{} has a great sense of humor.".format(user_name))
+    print("People often seek {}'s advice.".format(user_name))
+    print("{} is always willing to lend a helping hand.".format(user_name))
+
+# Main function
+def main():
+    greeting = get_random_greeting()
+    print(greeting + "! I'm your Friendly Gender Identity Assistant.")
+
+    user_name = get_user_name()
+    pronouns = None
+    print("\n{}, {}! Hopefully, you are having a good day.".format(get_pleasure_message(), user_name))
+    while True:
+        display_options(user_name)
+        choice = input("Please enter your choice (1-7 or type the option): ").lower()
+        
+        if choice == "create profile" or choice == "1":
+            print("Creating Profile...")
+            user_name, pronouns = create_profile(user_name)
+            print("Profile updated. Your new name is {} and your pronouns are {}.".format(user_name, pronouns))
+        elif choice == "preferred name and pronoun practice" or choice == "2":
+            print("Preferred Name and Pronoun Practice...")
+            preferred_name_and_pronoun_practice(user_name, pronouns)
+        elif choice == "validation" or choice == "3":
+            print("Validation...")
+            # Add your code for option 3 here
+        elif choice == "turn me into" or choice == "4":
+            print("Turn me into...")
+            # Add your code for option 4 here
+        elif choice == "give me a compliment" or choice == "5":
+            print("Give Me a Compliment...")
+            give_compliment(user_name)
+        elif choice == "about" or choice == "6":
+            display_about()
+        elif choice == "exit" or choice == "8":
+            print("Exiting. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 7.")
+
+if __name__ == "__main__":
+    main()
